@@ -1,1 +1,84 @@
-BÀI TẬP THỰC HÀNH 02 - CẤU TRÚC DỮ LIỆU VÀ GIẢI THUẬT Thông tin sinh viên Họ và tên: Nguyễn Gia Bảo Tường Mã số sinh viên: 31251020414Lớp học phần: Cấu trúc dữ liệu và Giải thuật Hướng dẫn cách chạy chương trình Toàn bộ mã nguồn được viết bằng C# và có thể chạy trực tiếp thông qua Visual Studio hoặc .NET CLI:Clone repository này về máy: git clone nguyengiabaotuong/CTGLDT-Buoi02-31251020414 Mở Solution bằng Visual Studio hoặc di chuyển vào từng thư mục (Bai1, Bai2, Bai3, Bai4).Cách chạy từng bài trong Visual Studio: Nhấp chuột phải vào Project của bài muốn chạy $\rightarrow$ Chọn Set as Startup Project $\rightarrow$ Nhấn Ctrl + F5 để chạy không cần debug.BÀI 1: THỐNG KÊ VÀ ĐẢO MẢNG Mô tả thuật toánThống kê: Khởi tạo min và max bằng phần tử đầu tiên, sum bằng $0$. Dùng một vòng lặp for duyệt từ đầu đến cuối mảng để cộng dồn tính tổng, cập nhật min/max, và đếm số lượng phần tử (âm, dương, bằng 0).Đảo mảng: Sử dụng hai con trỏ left = 0 và right = n - 1. Trong khi left < right, tiến hành hoán đổi giá trị tại hai vị trí này, sau đó thu hẹp khoảng cách (left++, right--).Độ phức tạp Thời gian: $\Theta(n)$ cho thao tác thống kê và $\Theta(n)$ cho thao tác đảo mảng. Hai vòng lặp chạy tuần tự nên tổng thời gian là $O(n)$.Bộ nhớ phụ: $\Theta(1)$ do mọi thao tác được thực hiện tại chỗ (in-place) trên mảng gốc, chỉ dùng thêm một vài biến lưu trữ cơ bản.Các ca kiểm thử STT Mảng đầu vào Kết quả mong đợi Nhận xét (Mục đích)13 7 2 9 5 min 2; max 9; đảo 5 9 2 7 3 Ca thường 2-5 0 5 0 âm 1; dương 1; bằng 0 là 2 Có số âm và 038 min = max = 8; đảo 8 Một phần tử 4-4 -2 -9 max -2; trung bình -5.00 Toàn số âm BÀI 2: CHÈN VÀ XÓA TRÊN MẢNG Mô tả thuật toán Insert: Kiểm tra sức chứa (count < Capacity). Bắt đầu từ cuối mảng (count), dùng vòng lặp lùi dịch các phần tử sang phải 1 ô đến vị trí index. Gán giá trị mới vào index và tăng count.RemoveAt: Bắt đầu từ vị trí index, dùng vòng lặp tiến dịch các phần tử bên phải sang trái 1 ô để lấp khoảng trống. Giảm count.Sử dụng ArgumentOutOfRangeException cho lỗi chỉ số và InvalidOperationException khi mảng đầy.Độ phức tạp Insert: Dịch count - index phần tử. Thời gian $\Theta(count - index + 1)$. Xấu nhất $O(n)$. Bộ nhớ phụ $\Theta(1)$.RemoveAt: Dịch count - index - 1 phần tử. Thời gian $\Theta(count - index)$. Xấu nhất $O(n)$. Bộ nhớ phụ $\Theta(1)$.Các ca kiểm thử Ca Đầu vào Kết quả mong đợi Nhận xét Thường mảng 5 pt, chèn 99 (idx 2), xóa (idx 1)Chèn/xóa đúng, bảo toàn mảng Chạy đúng logic Biên Chèn tại đầu / cuối Dịch toàn bộ / không phải dịchThể hiện rõ case tốt/xấu Không hợp lệ Xóa tại index = count hoặc < 0 Phát sinh ArgumentOutOfRangeException Ngoại lệ phát sinh chuẩn xác Không hợp lệ Chèn khi count == data.Length Phát sinh InvalidOperationException Bắt đúng mảng đầy BÀI 3: QUẢN LÝ LIST STUDENT Mô tả thuật toán Dùng List<Student> để lưu trữ danh sách.Thêm/Cập nhật/Xóa: Không dùng LINQ, sử dụng vòng lặp for duyệt từ $0$ đến Count - 1 để kiểm tra chuỗi Id. Ném lỗi nếu vi phạm điều kiện (trùng mã, điểm ngoài khoảng 0-10).Tìm kiếm: Ép chuỗi .ToLower() và dùng .Contains() để so sánh không phân biệt hoa thường.Độ phức tạp Kiểm tra trùng & Thêm: Tìm kiếm tuyến tính $O(n)$, List.Add tốn $O(1)$ khấu hao $\rightarrow$ Tổng thời gian $O(n)$.Tìm kiếm/Cập nhật/Xóa theo Id: Duyệt tuyến tính tốn thời gian $O(n)$.Thống kê: Duyệt danh sách 1 vòng lặp duy nhất $\rightarrow$ Thời gian $\Theta(n)$, bộ nhớ phụ $\Theta(1)$.Các ca kiểm thử Ca Đầu vào Kết quả mong đợi Nhận xét ThườngThêm 5 SV, tìm tên có thật Thêm thành công, hiển thị đúng Chạy chuẩn xác Không hợp lệ Thêm SV trùng mã Id Từ chối, báo lỗi trùng mã Chặn trùng lặp thành công Không hợp lệ Nhập điểm < 0 hoặc > 10 Từ chối, báo lỗi điểm số Kiểm tra dữ liệu đúng Biên Xóa mã Id không tồn tại Thông báo không tìm thấyHoạt động như yêu cầu Biên Thống kê danh sách rỗng Báo "Danh sach rong"Tránh lỗi chia cho 0BÀI 4: MẢNG ĐỘNG VÀ CAPACITYMô tả thuật toán Lớp quản lý dữ liệu bằng mảng tĩnh items[] và số lượng Count.EnsureCapacity: Khi Count == Capacity, khởi tạo mảng newItems với dung lượng gấp đôi (Capacity * 2). Dùng vòng lặp copy dữ liệu cũ sang và trỏ tham chiếu items sang mảng mới.Indexer: Cài đặt hàm get/set có kiểm tra ngoại lệ ArgumentOutOfRangeException.Độ phức tạpIndexer: Truy cập trực tiếp qua địa chỉ mảng tĩnh $\rightarrow$ $O(1)$.Thao tác Add: Nếu còn dư chỗ: $O(1)$. Nếu phải nhân đôi mở rộng: cần tạo mảng mới và sao chép $n$ phần tử $\rightarrow$ $O(n)$.Khấu hao: Trung bình qua nhiều lần chèn, thao tác Add đạt $O(1)$ khấu hao. Bộ nhớ phụ khi mở rộng là $O(n)$.Các ca kiểm thử Ca Đầu vào Kết quả mong đợi Nhận xét Thường Add số 1 đến 10Capacity tự động nhảy 4 $\rightarrow$ 8 $\rightarrow$ 16 Cơ chế cấp phát $O(1)$ khấu hao chuẩn ThườngCập nhật arr[2] = 999Lưu và in đúng giá trị mớiIndexer hoạt động $O(1)$ BiênMở rộng mảng cũ Dữ liệu cũ không đổi vị trí EnsureCapacity sao chép tốt Không hợp lệ Đọc arr[arr.Count]Báo ArgumentOutOfRangeException Bảo vệ thành công giới hạn biên
+Markdown
+# THÔNG TIN SINH VIÊN
+---
+* **Họ và tên:** Nguyễn Gia Bảo Tường
+* **Mã số sinh viên:** 31251020414
+* **Lớp học phần:** Cấu trúc dữ liệu và giải thuật
+
+# HƯỚNG DẪN BIÊN DỊCH VÀ CHẠY CHƯƠNG TRÌNH
+---
+1. Mở thư mục bài tập (Bai1, Bai2, Bai3, Bai4) bằng Visual Studio hoặc Visual Studio Code.
+2. Đảm bảo máy tính đã cài đặt .NET SDK.
+3. Nhấn nút **Start (F5)** trong Visual Studio (nhớ Set Startup Project cho bài cần chạy) hoặc mở Terminal gõ lệnh `dotnet run` để chạy chương trình.
+4. Nhập dữ liệu theo các dòng thông báo trên màn hình (Console).
+
+# MÔ TẢ GIẢI PHÁP, ĐỘ PHỨC TẠP & KIỂM THỬ
+---
+
+## Bài 1: Thống kê và đảo mảng
+
+* **Giải pháp:** Sử dụng một vòng lặp `for` duy nhất để duyệt qua mảng tính min, max, tổng, và đếm các loại phần tử. Dùng hai con trỏ `left` và `right` đổi chỗ chéo nhau để đảo mảng tại chỗ, điều kiện dừng là khi hai con trỏ chạm nhau.
+* **Độ phức tạp:** Thời gian $\Theta(n)$ do duyệt và đảo mảng tuyến tính. Bộ nhớ phụ $\Theta(1)$ vì thao tác trực tiếp trên mảng gốc, không dùng mảng phụ.
+
+**Ca kiểm thử:**
+
+| Ca | Đầu vào | Kết quả mong đợi | Kết quả thực tế | Nhận xét |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | `3 7 2 9 5` | min 2; max 9; đảo 5 9 2 7 3 | Đạt | Ca thường |
+| 2 | `-5 0 5 0` | âm 1; dương 1; bằng 0 là 2 | Đạt | Có số âm và 0 |
+| 3 | `8` | min = max = 8; đảo 8 | Đạt | Một phần tử |
+| 4 | `-4 -2 -9` | max -2; trung bình -5.00 | Đạt | Toàn số âm |
+
+---
+
+## Bài 2: Chèn và xóa trên mảng
+
+* **Giải pháp:** 
+  * `Insert`: Dịch phần tử từ phải sang trái (`i--`) bắt đầu từ vị trí `count` để tránh ghi đè dữ liệu.
+  * `RemoveAt`: Dịch phần tử từ trái sang phải (`i++`) bắt đầu từ `index` để lấp khoảng trống.
+  * Bắt lỗi `ArgumentOutOfRangeException` và `InvalidOperationException` theo yêu cầu.
+* **Độ phức tạp:** Thời gian $\Theta(count - index + 1)$ cho Insert và $\Theta(count - index)$ cho RemoveAt (Trường hợp xấu nhất là $O(n)$ khi thao tác ở đầu mảng). Bộ nhớ phụ $\Theta(1)$.
+
+**Ca kiểm thử:**
+
+| Ca | Đầu vào | Kết quả mong đợi | Kết quả thực tế | Nhận xét |
+| :--- | :--- | :--- | :--- | :--- |
+| Thường | mảng 5 pt, chèn 99 (idx 2), xóa (idx 1) | Chèn/xóa đúng, bảo toàn mảng | Đạt | Chạy đúng logic |
+| Biên | Chèn tại đầu / cuối | Dịch toàn bộ / không dịch | Đạt | Xử lý tốt/xấu đúng |
+| Biên | Xóa tại đầu / cuối | Dịch `count-1` / 0 phần tử | Đạt | Xử lý tốt/xấu đúng |
+| Lỗi | Xóa tại `index = count` hoặc `< 0` | `ArgumentOutOfRangeException` | Đạt | Bắt đúng lỗi biên |
+| Lỗi | Chèn khi `count == data.Length` | `InvalidOperationException` | Đạt | Bắt đúng mảng đầy |
+
+---
+
+## Bài 3: Quản lý List Student
+
+* **Giải pháp:** Khởi tạo lớp `Student`. Sử dụng `List<Student>` để quản lý. Xây dựng các hàm tách biệt. Không sử dụng thư viện LINQ mà dùng vòng lặp `for` thuần để đối chiếu `Id` (chống trùng lặp), tìm kiếm chuỗi con (bằng `.Contains()` và `.ToLower()`) và xóa sinh viên. 
+* **Độ phức tạp:** Thêm/Sửa/Xóa và Tìm kiếm đều tốn thời gian $O(n)$ do phải duyệt vòng lặp kiểm tra mã. Hàm Thống kê tính điểm trung bình duyệt mảng 1 lần tốn $\Theta(n)$. Bộ nhớ phụ $\Theta(1)$.
+
+**Ca kiểm thử:**
+
+| Ca | Đầu vào | Kết quả mong đợi | Kết quả thực tế | Nhận xét |
+| :--- | :--- | :--- | :--- | :--- |
+| Thường | Thêm 5 SV, tìm tên có thật | Thêm thành công, hiển thị đúng | Đạt | Chạy chuẩn xác |
+| Lỗi | Thêm SV trùng mã Id | Từ chối, báo lỗi trùng mã | Đạt | Chặn trùng lặp |
+| Lỗi | Nhập điểm < 0 hoặc > 10 | Từ chối, báo lỗi điểm số | Đạt | Bảo vệ dữ liệu |
+| Biên | Xóa mã Id không tồn tại | Thông báo không tìm thấy | Đạt | Xử lý êm mượt |
+| Biên | Thống kê danh sách rỗng | Báo "Danh sach rong" | Đạt | Tránh lỗi chia cho 0 |
+
+---
+
+## Bài 4: Mảng động và Capacity
+
+* **Giải pháp:** Sử dụng mảng tĩnh `T[] items` làm lõi. Hàm `EnsureCapacity()` kiểm tra nếu `Count == Capacity` thì tạo mảng mới có kích thước nhân đôi (`Capacity * 2`), chép dữ liệu cũ sang và trỏ lại vùng nhớ. Tích hợp ném ngoại lệ ở `Indexer` để bảo vệ truy cập.
+* **Độ phức tạp:** Thao tác Add trung bình khấu hao là $O(1)$. Việc cấp phát mở rộng mảng diễn ra hiếm hoi tiêu tốn thời gian $O(n)$ và bộ nhớ phụ tạm thời $O(n)$. Indexer truy cập trực tiếp tốn $O(1)$.
+
+**Ca kiểm thử:**
+
+| Ca | Đầu vào | Kết quả mong đợi | Kết quả thực tế | Nhận xét |
+| :--- | :--- | :--- | :--- | :--- |
+| Thường | Add số 1 đến 10 | Capacity nhảy 4 $\rightarrow$ 8 $\rightarrow$ 16 | Đạt | Cấp phát mảng chuẩn |
+| Thường | Cập nhật `arr[2]` = 999 | Lưu và in đúng giá trị mới | Đạt | Indexer hoạt động |
+| Biên | Mở rộng mảng cũ | Dữ liệu cũ không bị xáo trộn | Đạt | Chép dữ liệu tốt |
+| Lỗi | Khởi tạo Capacity = -5 | Báo `ArgumentOutOfRangeException` | Đạt | Khống chế đầu vào |
+| Lỗi | Đọc `arr[arr.Count]` | Báo `ArgumentOutOfRangeException` | Đạt | Bảo vệ giới hạn mảng |
