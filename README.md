@@ -1,4 +1,3 @@
-Markdown
 # THÔNG TIN SINH VIÊN
 ---
 * **Họ và tên:** Nguyễn Gia Bảo Tường
